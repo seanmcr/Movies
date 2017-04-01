@@ -9,25 +9,48 @@
 import UIKit
 import AFNetworking
 
+let BASE_URL = "https://image.tmdb.org/t/p/"
+let DEFAULT_POSTER_WIDTH = "w342"
+let DEFAULT_BACKDROP_WIDTH = "w300"
+let API_KEY = "049156cb06397ab4c23876522189a3c2"
+
+class Movie{
+    var movieInfo : NSDictionary = [:]
+    init(info : NSDictionary){
+        self.movieInfo = info
+    }
+    func getPosterImageURL() -> URL {
+        return URL(string:"\(BASE_URL)/\(DEFAULT_POSTER_WIDTH)\(self.movieInfo["poster_path"] as! String)?api_key=\(API_KEY)")!
+    }
+    func getBackdropImageURL() -> URL{
+        return URL(string:"\(BASE_URL)/\(DEFAULT_BACKDROP_WIDTH)\(self.movieInfo["backdrop_path"] as! String)?api_key=\(API_KEY)")!
+    }
+}
+
 class NowPlayingViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
     @IBOutlet weak var nowPlayingLabel: UILabel!
     @IBOutlet weak var moviesTable: UITableView!
     
+    var moviesArray : NSArray = []
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
         
-        // Do any additional setup after loading the view.
+        self.moviesTable.rowHeight = 200
+        self.moviesTable.delegate = self
+        self.moviesTable.dataSource = self
+        
+        self.loadNowPlayingMoviesAsync()
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
     func loadNowPlayingMoviesAsync(){
-        let url = URL(string:"https://api.tumblr.com/v2/blog/humansofnewyork.tumblr.com/posts/photo?api_key=Q6vHoaVm5L1u2ZAW1fqv3Jw48gFzYVg9P0vH0VHl3GVy6quoGV")
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd"
+        let threeMonthsAgo = Date.init(timeIntervalSinceNow: (-90 * 24 * 60 * 60))
+        let threeMonthsAgoStr = dateFormatter.string(from: threeMonthsAgo)
+        let nowStr = dateFormatter.string(from: Date())
+        let url = URL(string:"https://api.themoviedb.org/3/discover/movie?api_key=\(API_KEY)&primary_release_date.gte=\(threeMonthsAgoStr)&primary_release_date.lte=\(nowStr)")
         let request = URLRequest(url: url!)
         let session = URLSession(
             configuration: URLSessionConfiguration.default,
@@ -41,14 +64,13 @@ class NowPlayingViewController: UIViewController, UITableViewDelegate, UITableVi
                 if let data = data {
                     if let responseDictionary = try! JSONSerialization.jsonObject(
                         with: data, options:[]) as? NSDictionary {
-                        //print("responseDictionary: \(responseDictionary)")
                         
                         // Recall there are two fields in the response dictionary, 'meta' and 'response'.
                         // This is how we get the 'response' field
-                        let responseFieldDictionary = responseDictionary["response"] as! NSDictionary
+                        // let responseFieldDictionary = responseDictionary["response"] as! NSDictionary
                         
-                        // This is where you will store the returned array of posts in your posts property
-                        // self.feeds = responseFieldDictionary["posts"] as! [NSDictionary]
+                        self.moviesArray = responseDictionary["results"] as! NSArray
+                        self.moviesTable.reloadData()
                     }
                 }
         });
@@ -56,9 +78,18 @@ class NowPlayingViewController: UIViewController, UITableViewDelegate, UITableVi
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = self.moviesTable.dequeueReusableCell(withIdentifier: "MoviePosterCell")
+        let cell = self.moviesTable.dequeueReusableCell(withIdentifier: "MoviePosterCell") as! MoviePosterCell
+        cell.prepareForReuse()
+        let movie = Movie(info: self.moviesArray[indexPath.row] as! NSDictionary)
+        cell.backdropImage.setImageWith(movie.getBackdropImageURL())
         return cell
     }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return self.moviesArray.count
+    }
+    
+    
     
     
     /*

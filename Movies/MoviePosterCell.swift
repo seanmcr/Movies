@@ -10,7 +10,7 @@ import UIKit
 
 class MoviePosterCell: UITableViewCell {
 
-    @IBOutlet weak var posterImage: UIImageView!
+    @IBOutlet weak var backdropImage: UIImageView!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -21,6 +21,10 @@ class MoviePosterCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
 
         // Configure the view for the selected state
+    }
+    
+    override func prepareForReuse() {
+        backdropImage.image = nil
     }
 
 }
