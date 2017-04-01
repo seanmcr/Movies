@@ -1,14 +1,18 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11134" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12118" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11106"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Now Playing View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="NowPlayingViewController" customModule="Movies" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -16,11 +20,68 @@
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bL7-YH-9ZY">
+                                <rect key="frame" x="0.0" y="0.0" width="60.5" height="60"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="Xso-HH-I5d"/>
+                                </constraints>
+                                <attributedString key="attributedText">
+                                    <fragment content="NOW">
+                                        <attributes>
+                                            <font key="NSFont" metaFont="system" size="25"/>
+                                        </attributes>
+                                    </fragment>
+                                </attributedString>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Zu6-Tt-zaV">
+                                <rect key="frame" x="0.0" y="60" width="375" height="607"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="MoviePosterCell" id="tev-CK-ZuI" customClass="MoviePosterCell" customModule="Movies" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="tev-CK-ZuI" id="VWz-cJ-cix">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="rGT-M6-zyt">
+                                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                                </imageView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="rGT-M6-zyt" firstAttribute="leading" secondItem="VWz-cJ-cix" secondAttribute="leading" id="Zrz-eG-3MJ"/>
+                                                <constraint firstItem="rGT-M6-zyt" firstAttribute="top" secondItem="VWz-cJ-cix" secondAttribute="top" id="bLA-G2-1OL"/>
+                                                <constraint firstAttribute="bottom" secondItem="rGT-M6-zyt" secondAttribute="bottom" id="jQu-A3-wTt"/>
+                                                <constraint firstAttribute="trailing" secondItem="rGT-M6-zyt" secondAttribute="trailing" id="lgS-se-FnI"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="posterImage" destination="rGT-M6-zyt" id="he7-78-ke2"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="Zu6-Tt-zaV" firstAttribute="top" secondItem="bL7-YH-9ZY" secondAttribute="bottom" id="6M7-vq-8we"/>
+                            <constraint firstItem="bL7-YH-9ZY" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="Hlg-bD-hi6"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="Zu6-Tt-zaV" secondAttribute="bottom" id="Ikc-OS-o0Q"/>
+                            <constraint firstAttribute="trailing" secondItem="Zu6-Tt-zaV" secondAttribute="trailing" id="Ler-tR-JQn"/>
+                            <constraint firstItem="Zu6-Tt-zaV" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="eJt-tC-e7C"/>
+                            <constraint firstItem="bL7-YH-9ZY" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="keP-rV-Vcc"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="moviesTable" destination="Zu6-Tt-zaV" id="YzE-Xf-eGv"/>
+                        <outlet property="nowPlayingLabel" destination="bL7-YH-9ZY" id="5SB-LS-n6i"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="32.799999999999997" y="38.23088455772114"/>
         </scene>
     </scenes>
 </document>
