@@ -11,6 +11,8 @@ import UIKit
 class MoviePosterCell: UITableViewCell {
 
     @IBOutlet weak var backdropImage: UIImageView!
+    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var ratingLabel: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -24,7 +26,9 @@ class MoviePosterCell: UITableViewCell {
     }
     
     override func prepareForReuse() {
-        backdropImage.image = nil
+        self.backdropImage.image = nil
+        self.titleLabel?.text = nil
+        self.ratingLabel?.text = nil
     }
 
 }
