@@ -7,10 +7,30 @@
 //
 
 import UIKit
+import Observable
 
 class MovieDetailsViewController: UIViewController {
 
-    var movie : Movie
+    var runtimeChanged : EventSubscription<ValueChange<String>>?
+    
+    var movie : Movie? {
+        willSet {
+            if (self.runtimeChanged != nil){
+                movie!.runtime -= self.runtimeChanged!
+            }
+        }
+        didSet{
+            if (self.movie != nil){
+                self.movie!.ensureDetailsAsync()
+                self.runtimeChanged = self.movie!.runtime.afterChange += {
+                    self.runtimeLabel.text = $1
+                    self.runtimeLabel.sizeToFit()
+                }
+            }
+        }
+    }
+    
+    @IBOutlet weak var runtimeLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()

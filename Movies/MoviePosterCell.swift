@@ -14,6 +14,19 @@ class MoviePosterCell: UITableViewCell {
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var ratingLabel: UILabel!
     
+    var movie : Movie? {
+        didSet {
+            if (self.movie != nil){
+                self.backdropImage?.setImageWith(self.movie!.getBackdropImageURL())
+                self.titleLabel?.text = self.movie!.title
+            } else {
+                self.backdropImage?.image = nil
+                self.titleLabel?.text = nil
+                self.ratingLabel?.text = nil
+            }
+        }
+    }
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -26,9 +39,7 @@ class MoviePosterCell: UITableViewCell {
     }
     
     override func prepareForReuse() {
-        self.backdropImage.image = nil
-        self.titleLabel?.text = nil
-        self.ratingLabel?.text = nil
+        self.movie = nil
     }
 
 }
