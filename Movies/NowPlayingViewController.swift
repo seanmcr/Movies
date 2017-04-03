@@ -51,12 +51,12 @@ class NowPlayingViewController: UIViewController, UITableViewDelegate, UITableVi
         if (refreshControl == nil){
             ARSLineProgress.show()
         }
-        var dataLoaded = false
+        var dataRefreshComplete = false
         
         // Ensure the progress shows for a minimum period of
         // time to prevent flashing
         var minimumDelayTimer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: false) { (timer) in
-            if (dataLoaded){
+            if (dataRefreshComplete){
                 ARSLineProgress.hide()
                 self.moviesTable.reloadData()
             }
@@ -79,15 +79,15 @@ class NowPlayingViewController: UIViewController, UITableViewDelegate, UITableVi
                         self.moviesTable.reloadData()
                     }
                     refreshControl?.endRefreshing()
+                    dataRefreshComplete = true
                 }
-                if (error != nil){
-                    self.networkErrorView.isHidden = false
-                }
+                
+                self.networkErrorView.isHidden = (error != nil)
+                
                 if let data = data {
                     if let responseDictionary = try! JSONSerialization.jsonObject(
                         with: data, options:[]) as? NSDictionary {
                         self.moviesArray = responseDictionary["results"] as! NSArray
-                        dataLoaded = true
                     }
                 }
         });
