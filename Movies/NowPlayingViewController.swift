@@ -82,7 +82,7 @@ class NowPlayingViewController: UIViewController, UITableViewDelegate, UITableVi
                     dataRefreshComplete = true
                 }
                 
-                self.networkErrorView.isHidden = (error != nil)
+                self.networkErrorView.isHidden = (error == nil)
                 
                 if let data = data {
                     if let responseDictionary = try! JSONSerialization.jsonObject(
