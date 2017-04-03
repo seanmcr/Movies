@@ -26,13 +26,16 @@ The following **optional** features are implemented:
 
 The following **additional** features are implemented:
 
-- [ ] Movie details (e.g. runtime, ) are loaded asynchronously for improved performance
+- [x] Movie details (e.g. runtime, production companies) are loaded asynchronously after transitioning to the detail view for better performance
+- [x] Applied a dark blur effect to the backdrop image to give a cool background effect on the details view and maintain continuity between the cell on the main view and the details view
+- [x] Used layout constraints to enable for an adaptive design
 
 ## Video Walkthrough
 
 Here's a walkthrough of implemented user stories:
 
-<img src='http://i.imgur.com/link/to/your/gif/file.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+![Movies iOS app walkthrough](http://i.imgur.com/LtOOlLW.gif)
+![Movies iOS app walkthrough: Network failure](http://i.imgur.com/T3Fmaix.gif)
 
 GIF created with [LiceCap](http://www.cockos.com/licecap/).
 
@@ -40,9 +43,13 @@ GIF created with [LiceCap](http://www.cockos.com/licecap/).
 
 Describe any challenges encountered while building the app.
 
+* I ended up using layout constraints somewhat extensively throughout the app, which was really helpful in achieving the design I wanted but took more time than I intended.  Using the UIScrollView gave me a bit of a headache because of ambiguity in the content height/width
+* I wasn't able to get a custom UILabel with an attributed string to display in the navigation bar.  I also tried making the navigation bar transparent and displaying the UILabel behind it, with no luck.
+* I tried making a custom XIB for the network error notification so i could re-use it between views, but I couldn't figure out how to get Interface Builder to recognize my custom UIView + XIB.  Eventually I gave up.
+
 ## License
 
-    Copyright [yyyy] [name of copyright owner]
+    Copyright 2017 Sean McRoskey
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
