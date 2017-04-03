@@ -25,11 +25,13 @@ extension UIImageView
 class MovieDetailsViewController: UIViewController {
 
     var runtimeChanged : EventSubscription<ValueChange<String>>?
+    var productionCompaniesChanged : EventSubscription<ValueChange<String>>?
     
     var movie : Movie? {
         willSet {
             if (self.runtimeChanged != nil){
                 movie!.runtime -= self.runtimeChanged!
+                movie!.productionCompanies -= self.productionCompaniesChanged!
             }
         }
         didSet{
@@ -37,7 +39,10 @@ class MovieDetailsViewController: UIViewController {
                 self.movie!.ensureDetailsAsync()
                 self.runtimeChanged = self.movie!.runtime.afterChange += {
                     self.runtimeLabel.text = $1
-                    self.runtimeLabel.sizeToFit()
+                    //self.runtimeLabel.sizeToFit()
+                }
+                self.productionCompaniesChanged = self.movie!.productionCompanies.afterChange += {
+                    self.productionCompaniesLabel.text = $1
                 }
             }
         }
@@ -45,11 +50,13 @@ class MovieDetailsViewController: UIViewController {
     
     var bgImage : UIImage?
     
-    @IBOutlet weak var runtimeLabel: UILabel!
     @IBOutlet weak var backgroundImage: UIImageView!
     @IBOutlet weak var posterImage: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var overviewLabel: UILabel!
+    @IBOutlet weak var runtimeLabel: UILabel!
+    @IBOutlet weak var releaseDateLabel: UILabel!
+    @IBOutlet weak var productionCompaniesLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -59,7 +66,8 @@ class MovieDetailsViewController: UIViewController {
         
         self.titleLabel.text = self.movie!.title
         self.overviewLabel.text = self.movie!.overview
-        self.overviewLabel.sizeToFit()
+        //self.overviewLabel.sizeToFit()
+        self.releaseDateLabel.text = self.movie!.releaseDate
         // Do any additional setup after loading the view.
     }
 

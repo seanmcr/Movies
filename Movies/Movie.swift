@@ -52,6 +52,10 @@ class Movie {
         return Double(self.movieInfo["vote_average"] as! String)!
     }
     
+    var releaseDate : String {
+        return self.movieInfo["release_date"] as! String
+    }
+    
     var movieDetails : NSDictionary? {
         didSet {
             // Update runtime property
@@ -61,11 +65,15 @@ class Movie {
                 let hours = runtimeInMinutes / 60
                 let minutes = runtimeInMinutes % 60
                 self.runtime ^= "\(hours)h \(minutes)m"
+                
+                let prodCos = self.movieDetails!["production_companies"] as! NSArray
+                self.productionCompanies ^= prodCos.map({"\(($0 as! NSDictionary).value(forKey: "name")!)"}).joined(separator: ", ")
             } 
         }
     }
 
     var runtime : Observable<String> = Observable<String>("")
+    var productionCompanies : Observable<String> = Observable<String>("")
     
     init(withMovieInfo movieInfo : NSDictionary){
         self.movieInfo = movieInfo
