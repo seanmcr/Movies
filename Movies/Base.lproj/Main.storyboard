@@ -44,7 +44,7 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="tev-CK-ZuI" id="VWz-cJ-cix">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="rGT-M6-zyt">
@@ -76,6 +76,11 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="HeG-7z-unp">
+                                <rect key="frame" x="67" y="269" width="240" height="128"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
@@ -118,7 +123,7 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" verticalCompressionResistancePriority="751" ambiguous="YES" showsHorizontalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ae4-5n-uyg">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" verticalCompressionResistancePriority="751" showsHorizontalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ae4-5n-uyg">
                                 <rect key="frame" x="16" y="134" width="343" height="533"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="FUA-xg-OmU">
@@ -184,6 +189,7 @@
                                     <constraint firstItem="5TH-pg-WVt" firstAttribute="baseline" secondItem="MJB-JE-DjL" secondAttribute="baseline" id="K88-OL-ruc"/>
                                     <constraint firstItem="FUA-xg-OmU" firstAttribute="leading" secondItem="Ae4-5n-uyg" secondAttribute="leading" id="NiO-xW-Ghs"/>
                                     <constraint firstItem="ly7-Fi-fGk" firstAttribute="top" secondItem="FUA-xg-OmU" secondAttribute="bottom" constant="16" id="SaR-Yq-5pQ"/>
+                                    <constraint firstAttribute="trailing" secondItem="ly7-Fi-fGk" secondAttribute="trailing" constant="8" id="b9N-Yn-Y04"/>
                                     <constraint firstItem="ly7-Fi-fGk" firstAttribute="bottom" secondItem="Ae4-5n-uyg" secondAttribute="bottom" id="cbi-h1-t9s"/>
                                     <constraint firstItem="mda-JX-xzA" firstAttribute="top" secondItem="MJB-JE-DjL" secondAttribute="bottom" constant="8" id="dzn-eF-QSK"/>
                                     <constraint firstItem="ly7-Fi-fGk" firstAttribute="leading" secondItem="Ae4-5n-uyg" secondAttribute="leading" id="jdK-6h-T7F"/>

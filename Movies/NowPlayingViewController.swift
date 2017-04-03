@@ -8,6 +8,7 @@
 
 import UIKit
 import AFNetworking
+import ARSLineProgress
 
 class NowPlayingViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
@@ -34,6 +35,14 @@ class NowPlayingViewController: UIViewController, UITableViewDelegate, UITableVi
     }
 
     func loadNowPlayingMoviesAsync(){
+        ARSLineProgress.show()
+        var dataLoaded = false
+        var minimumDelayTimer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: false) { (timer) in
+            if (dataLoaded){
+                ARSLineProgress.hide()
+                self.moviesTable.reloadData()
+            }
+        }
         let url = URL(string:"https://api.themoviedb.org/3/movie/now_playing?api_key=\(API_KEY)")
         let request = URLRequest(url: url!)
         let session = URLSession(
@@ -45,11 +54,17 @@ class NowPlayingViewController: UIViewController, UITableViewDelegate, UITableVi
         let task : URLSessionDataTask = session.dataTask(
             with: request as URLRequest,
             completionHandler: { (data, response, error) in
+                defer {
+                    dataLoaded = true
+                    if (minimumDelayTimer.isValid == false){
+                        ARSLineProgress.hide()
+                        self.moviesTable.reloadData()
+                    }
+                }
                 if let data = data {
                     if let responseDictionary = try! JSONSerialization.jsonObject(
                         with: data, options:[]) as? NSDictionary {
                         self.moviesArray = responseDictionary["results"] as! NSArray
-                        self.moviesTable.reloadData()
                     }
                 }
         });

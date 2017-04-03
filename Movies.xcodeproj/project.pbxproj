@@ -15,6 +15,8 @@
 		ABACA44D1E8F8CEB00247DD1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ABACA44C1E8F8CEB00247DD1 /* Assets.xcassets */; };
 		ABACA4501E8F8CEB00247DD1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ABACA44E1E8F8CEB00247DD1 /* LaunchScreen.storyboard */; };
 		ABFC939E1E919CA00049DCAE /* Movie.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABFC939D1E919CA00049DCAE /* Movie.swift */; };
+		ABFC93A41E91F7F20049DCAE /* NetworkErrorNotificationBar.xib in Resources */ = {isa = PBXBuildFile; fileRef = ABFC93A31E91F7F20049DCAE /* NetworkErrorNotificationBar.xib */; };
+		ABFC93A71E91F9390049DCAE /* warningIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = ABFC93A61E91F9390049DCAE /* warningIcon.png */; };
 		C46F7BA0A2693BEE9DA4E8D6 /* Pods_Movies.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F24020D878A71E3B39F2094 /* Pods_Movies.framework */; };
 /* End PBXBuildFile section */
 
@@ -32,6 +34,8 @@
 		ABACA44F1E8F8CEB00247DD1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		ABACA4511E8F8CEB00247DD1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		ABFC939D1E919CA00049DCAE /* Movie.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Movie.swift; sourceTree = "<group>"; };
+		ABFC93A31E91F7F20049DCAE /* NetworkErrorNotificationBar.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NetworkErrorNotificationBar.xib; sourceTree = "<group>"; };
+		ABFC93A61E91F9390049DCAE /* warningIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = warningIcon.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -84,6 +88,7 @@
 		ABACA4441E8F8CEB00247DD1 /* Movies */ = {
 			isa = PBXGroup;
 			children = (
+				ABFC93A51E91F9290049DCAE /* Assets */,
 				ABACA4451E8F8CEB00247DD1 /* AppDelegate.swift */,
 				ABACA4491E8F8CEB00247DD1 /* Main.storyboard */,
 				ABACA44C1E8F8CEB00247DD1 /* Assets.xcassets */,
@@ -117,8 +122,17 @@
 			isa = PBXGroup;
 			children = (
 				AB09A3781E8F93C00073CA26 /* MoviePosterCell.swift */,
+				ABFC93A31E91F7F20049DCAE /* NetworkErrorNotificationBar.xib */,
 			);
 			name = View;
+			sourceTree = "<group>";
+		};
+		ABFC93A51E91F9290049DCAE /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+				ABFC93A61E91F9390049DCAE /* warningIcon.png */,
+			);
+			name = Assets;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -184,6 +198,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ABFC93A71E91F9390049DCAE /* warningIcon.png in Resources */,
+				ABFC93A41E91F7F20049DCAE /* NetworkErrorNotificationBar.xib in Resources */,
 				ABACA4501E8F8CEB00247DD1 /* LaunchScreen.storyboard in Resources */,
 				ABACA44D1E8F8CEB00247DD1 /* Assets.xcassets in Resources */,
 				ABACA44B1E8F8CEB00247DD1 /* Main.storyboard in Resources */,
