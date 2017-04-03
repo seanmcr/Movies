@@ -34,8 +34,8 @@ The following **additional** features are implemented:
 
 Here's a walkthrough of implemented user stories:
 
-![Movies iOS app walkthrough](http://i.imgur.com/LtOOlLW.gif)
-![Movies iOS app walkthrough: Network failure](http://i.imgur.com/T3Fmaix.gif)
+[Movies iOS app walkthrough](http://i.imgur.com/LtOOlLW.gif)
+[Showing network failure](http://i.imgur.com/T3Fmaix.gif)
 
 GIF created with [LiceCap](http://www.cockos.com/licecap/).
 
