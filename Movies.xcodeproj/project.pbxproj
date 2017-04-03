@@ -15,9 +15,7 @@
 		ABACA44D1E8F8CEB00247DD1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ABACA44C1E8F8CEB00247DD1 /* Assets.xcassets */; };
 		ABACA4501E8F8CEB00247DD1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ABACA44E1E8F8CEB00247DD1 /* LaunchScreen.storyboard */; };
 		ABFC939E1E919CA00049DCAE /* Movie.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABFC939D1E919CA00049DCAE /* Movie.swift */; };
-		ABFC93A41E91F7F20049DCAE /* NetworkErrorNotificationView.xib in Resources */ = {isa = PBXBuildFile; fileRef = ABFC93A31E91F7F20049DCAE /* NetworkErrorNotificationView.xib */; };
 		ABFC93A71E91F9390049DCAE /* warningIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = ABFC93A61E91F9390049DCAE /* warningIcon.png */; };
-		ABFC93A91E91FEE20049DCAE /* NetworkErrorNotificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABFC93A81E91FEE20049DCAE /* NetworkErrorNotificationView.swift */; };
 		C46F7BA0A2693BEE9DA4E8D6 /* Pods_Movies.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F24020D878A71E3B39F2094 /* Pods_Movies.framework */; };
 /* End PBXBuildFile section */
 
@@ -35,9 +33,7 @@
 		ABACA44F1E8F8CEB00247DD1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		ABACA4511E8F8CEB00247DD1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		ABFC939D1E919CA00049DCAE /* Movie.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Movie.swift; sourceTree = "<group>"; };
-		ABFC93A31E91F7F20049DCAE /* NetworkErrorNotificationView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NetworkErrorNotificationView.xib; sourceTree = "<group>"; };
 		ABFC93A61E91F9390049DCAE /* warningIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = warningIcon.png; sourceTree = "<group>"; };
-		ABFC93A81E91FEE20049DCAE /* NetworkErrorNotificationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkErrorNotificationView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -124,8 +120,6 @@
 			isa = PBXGroup;
 			children = (
 				AB09A3781E8F93C00073CA26 /* MoviePosterCell.swift */,
-				ABFC93A31E91F7F20049DCAE /* NetworkErrorNotificationView.xib */,
-				ABFC93A81E91FEE20049DCAE /* NetworkErrorNotificationView.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -202,7 +196,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				ABFC93A71E91F9390049DCAE /* warningIcon.png in Resources */,
-				ABFC93A41E91F7F20049DCAE /* NetworkErrorNotificationView.xib in Resources */,
 				ABACA4501E8F8CEB00247DD1 /* LaunchScreen.storyboard in Resources */,
 				ABACA44D1E8F8CEB00247DD1 /* Assets.xcassets in Resources */,
 				ABACA44B1E8F8CEB00247DD1 /* Main.storyboard in Resources */,
@@ -266,7 +259,6 @@
 			files = (
 				AB09A37B1E90D5D40073CA26 /* MovieDetailsViewController.swift in Sources */,
 				AB09A3791E8F93C00073CA26 /* MoviePosterCell.swift in Sources */,
-				ABFC93A91E91FEE20049DCAE /* NetworkErrorNotificationView.swift in Sources */,
 				AB09A3771E8F8EB70073CA26 /* NowPlayingViewController.swift in Sources */,
 				ABACA4461E8F8CEB00247DD1 /* AppDelegate.swift in Sources */,
 				ABFC939E1E919CA00049DCAE /* Movie.swift in Sources */,

@@ -14,13 +14,16 @@ class NowPlayingViewController: UIViewController, UITableViewDelegate, UITableVi
 
     @IBOutlet weak var nowPlayingLabel: UILabel!
     @IBOutlet weak var moviesTable: UITableView!
+    @IBOutlet weak var networkErrorView: UIView!
     
     var moviesArray : NSArray = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let titleFrame = UIView()
+//        let titleFrame = UIView(frame: self.nowPlayingLabel.frame)
+//        titleFrame.addSubview(self.nowPlayingLabel)
+//        self.navigationItem.titleView = titleFrame
         
         self.moviesTable.rowHeight = 200
         self.moviesTable.delegate = self
@@ -28,6 +31,9 @@ class NowPlayingViewController: UIViewController, UITableViewDelegate, UITableVi
         
         self.loadNowPlayingMoviesAsync()
         
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: #selector(NowPlayingViewController.refreshControlAction(_:)), for: UIControlEvents.valueChanged)
+        self.moviesTable.addSubview(refreshControl)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -37,15 +43,25 @@ class NowPlayingViewController: UIViewController, UITableViewDelegate, UITableVi
         destination.bgImage = sourceCell.backdropImage.image
     }
 
-    func loadNowPlayingMoviesAsync(){
-        ARSLineProgress.show()
+    func refreshControlAction(_ refreshControl : UIRefreshControl){
+        loadNowPlayingMoviesAsync(refreshControl: refreshControl)
+    }
+    
+    func loadNowPlayingMoviesAsync(refreshControl : UIRefreshControl? = nil){
+        if (refreshControl == nil){
+            ARSLineProgress.show()
+        }
         var dataLoaded = false
+        
+        // Ensure the progress shows for a minimum period of
+        // time to prevent flashing
         var minimumDelayTimer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: false) { (timer) in
             if (dataLoaded){
                 ARSLineProgress.hide()
                 self.moviesTable.reloadData()
             }
         }
+        
         let url = URL(string:"https://api.themoviedb.org/3/movie/now_playing?api_key=\(API_KEY)")
         let request = URLRequest(url: url!)
         let session = URLSession(
@@ -58,16 +74,20 @@ class NowPlayingViewController: UIViewController, UITableViewDelegate, UITableVi
             with: request as URLRequest,
             completionHandler: { (data, response, error) in
                 defer {
-                    dataLoaded = true
                     if (minimumDelayTimer.isValid == false){
                         ARSLineProgress.hide()
                         self.moviesTable.reloadData()
                     }
+                    refreshControl?.endRefreshing()
+                }
+                if (error != nil){
+                    self.networkErrorView.isHidden = false
                 }
                 if let data = data {
                     if let responseDictionary = try! JSONSerialization.jsonObject(
                         with: data, options:[]) as? NSDictionary {
                         self.moviesArray = responseDictionary["results"] as! NSArray
+                        dataLoaded = true
                     }
                 }
         });
@@ -85,6 +105,9 @@ class NowPlayingViewController: UIViewController, UITableViewDelegate, UITableVi
         return self.moviesArray.count
     }
     
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 0;
+    }
     
     
     
