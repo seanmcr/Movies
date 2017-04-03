@@ -43,6 +43,7 @@ class MovieDetailsViewController: UIViewController {
                 }
                 self.productionCompaniesChanged = self.movie!.productionCompanies.afterChange += {
                     self.productionCompaniesLabel.text = $1
+                    //self.runtimeLabel.sizeToFit()
                 }
             }
         }
