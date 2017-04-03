@@ -27,8 +27,10 @@ class NowPlayingViewController: UIViewController, UITableViewDelegate, UITableVi
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        var destination = segue.destination as! MovieDetailsViewController
-        destination.movie = (sender as! MoviePosterCell).movie
+        let destination = segue.destination as! MovieDetailsViewController
+        let sourceCell = (sender as! MoviePosterCell)
+        destination.movie = sourceCell.movie
+        destination.bgImage = sourceCell.backdropImage.image
     }
 
     func loadNowPlayingMoviesAsync(){

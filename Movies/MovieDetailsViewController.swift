@@ -9,6 +9,19 @@
 import UIKit
 import Observable
 
+extension UIImageView
+{
+    func addBlurEffect()
+    {
+        let blurEffect = UIBlurEffect(style: UIBlurEffectStyle.dark)
+        let blurEffectView = UIVisualEffectView(effect: blurEffect)
+        blurEffectView.frame = self.bounds
+        
+        blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight] // for supporting device rotation
+        self.addSubview(blurEffectView)
+    }
+}
+
 class MovieDetailsViewController: UIViewController {
 
     var runtimeChanged : EventSubscription<ValueChange<String>>?
@@ -30,11 +43,23 @@ class MovieDetailsViewController: UIViewController {
         }
     }
     
+    var bgImage : UIImage?
+    
     @IBOutlet weak var runtimeLabel: UILabel!
+    @IBOutlet weak var backgroundImage: UIImageView!
+    @IBOutlet weak var posterImage: UIImageView!
+    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var overviewLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        self.backgroundImage.addBlurEffect()
+        self.backgroundImage.image = self.bgImage
+        self.posterImage.setImageWith(self.movie!.getPosterImageURL())
+        
+        self.titleLabel.text = self.movie!.title
+        self.overviewLabel.text = self.movie!.overview
+        self.overviewLabel.sizeToFit()
         // Do any additional setup after loading the view.
     }
 
