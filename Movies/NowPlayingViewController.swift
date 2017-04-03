@@ -20,11 +20,14 @@ class NowPlayingViewController: UIViewController, UITableViewDelegate, UITableVi
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        let titleFrame = UIView()
+        
         self.moviesTable.rowHeight = 200
         self.moviesTable.delegate = self
         self.moviesTable.dataSource = self
         
         self.loadNowPlayingMoviesAsync()
+        
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

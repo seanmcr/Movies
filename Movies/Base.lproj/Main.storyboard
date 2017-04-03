@@ -22,22 +22,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bL7-YH-9ZY">
-                                <rect key="frame" x="0.0" y="0.0" width="60.5" height="60"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="60" id="Xso-HH-I5d"/>
-                                </constraints>
-                                <attributedString key="attributedText">
-                                    <fragment content="NOW">
-                                        <attributes>
-                                            <font key="NSFont" metaFont="system" size="25"/>
-                                        </attributes>
-                                    </fragment>
-                                </attributedString>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Zu6-Tt-zaV">
-                                <rect key="frame" x="0.0" y="60" width="375" height="607"/>
+                                <rect key="frame" x="0.0" y="49" width="375" height="618"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="MoviePosterCell" id="tev-CK-ZuI" customClass="MoviePosterCell" customModule="Movies" customModuleProvider="target">
@@ -76,11 +62,28 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="HeG-7z-unp">
-                                <rect key="frame" x="67" y="269" width="240" height="128"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bL7-YH-9ZY">
+                                <rect key="frame" x="0.0" y="0.0" width="359" height="49"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                <attributedString key="attributedText">
+                                    <fragment content="NOW">
+                                        <attributes>
+                                            <color key="NSColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                            <font key="NSFont" size="41" name="HelveticaNeue-Bold"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="clipping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                        </attributes>
+                                    </fragment>
+                                    <fragment content="PLAYING">
+                                        <attributes>
+                                            <color key="NSColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                            <font key="NSFont" size="41" name="HelveticaNeue-UltraLight"/>
+                                            <font key="NSOriginalFont" size="41" name="HelveticaNeue-UltraLight"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="clipping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                        </attributes>
+                                    </fragment>
+                                </attributedString>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
@@ -89,6 +92,7 @@
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="Zu6-Tt-zaV" secondAttribute="bottom" id="Ikc-OS-o0Q"/>
                             <constraint firstAttribute="trailing" secondItem="Zu6-Tt-zaV" secondAttribute="trailing" id="Ler-tR-JQn"/>
                             <constraint firstItem="Zu6-Tt-zaV" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="eJt-tC-e7C"/>
+                            <constraint firstItem="bL7-YH-9ZY" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="gS5-E2-HAz"/>
                             <constraint firstItem="bL7-YH-9ZY" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="keP-rV-Vcc"/>
                         </constraints>
                     </view>
@@ -237,9 +241,10 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="njs-1E-mwa" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="gSk-j8-F81">
+                    <navigationBar key="navigationBar" alpha="0.5" contentMode="scaleToFill" misplaced="YES" id="gSk-j8-F81">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" red="1" green="1" blue="1" alpha="0.0" colorSpace="calibratedRGB"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
